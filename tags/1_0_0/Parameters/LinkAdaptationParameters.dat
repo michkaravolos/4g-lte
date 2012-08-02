@@ -1,0 +1,9 @@
+numberMCSs = 3
+beta0 = 1.513
+beta1 = 3.620
+beta2 = 3.620
+MCSThreshold0 = 0.0 # dB
+MCSThreshold1 = 5.0 # dB
+MCSThreshold2 = 13.0 # dB
+BERt = 0.000001
+codingRate = 0.3333333

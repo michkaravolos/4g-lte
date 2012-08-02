@@ -1,0 +1,7 @@
+numberUsersPerSlot = 6 
+sameUserAtSlots = true # if false, not tested yet
+schedulingAlgorithm = 2
+
+# 0 - random
+# 1 - maximum throughput
+# 2 - proportional fair
