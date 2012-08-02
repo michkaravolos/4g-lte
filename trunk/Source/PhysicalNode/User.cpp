@@ -87,7 +87,7 @@ User::setParameters()
    int Direction_=sp->Direction;
 
    if(Direction_ == 0){
-      device_ = new Reciever(orientation);} //Não faz sentido orientation, por isso ponho 1. Se por 0, provoca erro.
+      device_ = new Receiver(orientation);} //Não faz sentido orientation, por isso ponho 1. Se por 0, provoca erro.
    else{
       device_ = new Transmitter(orientation);
    }
