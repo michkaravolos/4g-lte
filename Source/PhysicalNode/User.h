@@ -12,7 +12,7 @@
 #define _User_h_
 
 #include "PhysicalNode.h"
-#include "Reciever.h"
+#include "receiver.h"
 
 using namespace std;
 

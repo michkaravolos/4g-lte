@@ -91,7 +91,7 @@ if(Direction_ ==0){
 else{
    if( orientation > 0 || orientation < 3 )
    {
-       device_ = new Reciever(orientation);// É receptor, mas a antena eh igual a de transmissão.
+       device_ = new Receiver(orientation);// É receptor, mas a antena eh igual a de transmissão.
    }
    else
    {
@@ -207,7 +207,7 @@ ENodeB::getTransmittedPower( double Frequency )
 int Direction_ = sp->Direction;
 
    Transmitter* t = static_cast<Transmitter*>( device_ );
-   Reciever* r = static_cast<Reciever*>( device_ );
+   Receiver* r = static_cast<Receiver*>( device_ );
 
    double p = 0.0;
    int size = physicalLayer_->getNumberSCFrequencies();

@@ -67,7 +67,7 @@ class Device
       Antenna* antenna_;
       /**
        * Orientação
-       * Trouxe de Transmitter para que Reciever também tenha orientation. Mas só faz sentido na eNodeB.
+       * Trouxe de Transmitter para que receiver também tenha orientation. Mas só faz sentido na eNodeB.
        */
       int orientation_;
 
