@@ -1,0 +1,9 @@
+systemBandwidth = 10000000 # 1e6
+centralFrequency = 2000000000 # 2e9
+subcarrierBandwidth = 15000 # 15e3
+totalPower = 0.1995 # 46dBm;
+numberTransmitAntennas = 1
+
+
+
+
