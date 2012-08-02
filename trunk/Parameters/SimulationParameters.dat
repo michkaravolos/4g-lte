@@ -1,0 +1,13 @@
+StepsPerDrop = 2 # [subframes]
+numberENodeBs = 57 # 19 x 3. DO NOT CHANGE
+numberUsers = 15 # not used
+temperature = 300
+DropsPerSimulation = 2
+initialUsers = 50
+finalUsers = 90
+userStep = 40
+SoundingInterval = 0.05 # 50ms
+Direction = 1
+# 0 - Downlink
+# 1 - Uplink
+

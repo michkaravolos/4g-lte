@@ -1,0 +1,7 @@
+noiseFigure = 7.94328 # 9 dB
+CQIUpdatePeriod = 0
+numberCQIBits = 4;
+minSINRConsidered = -10 [dB]
+maxSINRConsidered = 30 [dB]
+CQIReportDelay = 1
+CQISD = 1.0
