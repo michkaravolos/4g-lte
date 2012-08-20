@@ -6,7 +6,15 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
+
 
 #ifndef _SmallScaleFading_h_
 #define _SmallScaleFading_h_
@@ -41,44 +49,44 @@ class SmallScaleFading : public Fading
       virtual ~SmallScaleFading();
       
       /**
-       * Define os parâmetros
+       * Defines numberUsers_, numberENodeBs_, simulationTime_, bandWidth_, bandWidthSubcarrier_, carrierFrequency_, numberAntennas_, 
+       userSpeed_, channelProfile_, totalTime_.
        * 
        */
       void setParameters();
       
       /**
-       * Inicializa os parâmetros
+       * Initializes maximumDopplerShift_, totalTime_, timeStep_, frequencyStep_, channel_, fading_.
        * 
        */
       void initialize();
       
       /**
-       * Cria o canal
+       * Creates the channel.
        *  
        */
       void createChannel();
       
       /**
-       * Gera o fading
+       * Generates Fading.
        * 
        */
       void generateFading( Array<vec>& fading );
       
       /**
-       * Retorna o timestep
+       * Returns timestep.
        * 
        */
       double getTimeStep();
       
       /**
-       * Retorna o frequencystep
+       * Returns frequencystep.
        * 
        */
       double getFrequencyStep(); 
       
       /**
-       * Salva a matriz de fading de pequena escala
-       * 
+       * Saves the Small Scaling Fading.
        */
       void saveFadingArray(); 
       

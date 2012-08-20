@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _Simulation_h_
 #define _Simulation_h_
@@ -46,8 +53,7 @@ class Simulation
    public:
    
       /**
-       * Define os parametros de simulacao e inicializa as demais classes relacionadas a simulacao
-       * 
+       * Calls setParameters and initialize.
        */	
       Simulation();
 
@@ -58,26 +64,48 @@ class Simulation
       virtual ~Simulation();
       
       /**
-       * Resgata os parametros de simulacao setados em SimulationParameters.dat
-       * e define o numero de simulacoes.
+       * Retrieves the parameters of simulation setled on SimulationParameters.dat and define the number of simulations.
+       * Initializes simulationDrops_, numberSimulations_ and Direction_.
        */
       void setParameters();
       
-      /**
-       * Cada função realiza um teste específico
-       * 
+       /**
+       * Tests the Channel.
        */
       void testChannel();
+      /**
+       * 
+       * Tests the losses.
+       */
       void testLosses();
+      /**
+       * Tests path Losses.
+       * 
+       */
       void testPathLoss();
+      /**
+       * Tests the links
+       * 
+       */
       void testLink();
+      /**
+       * Shows the results of raw and efective rate.
+       */
       void testResults();
+      /**
+       * Shows the total of links of ENodeBs, that are 57.
+       */
       void testFrequencyPlanning();
+      /**
+       * Tests the fading.
+       * 
+       */
       void testFading();
       
       /**
-       * Inicializa as classes da simulacao resgatando as situações de cada classes
-       * geralmente iniciando novamente
+       * Run all getInstances.
+       * Which sets results_, grid_, mobility_, timeManager_, radioChannel_, simulationEnvironment_, link_, frequencyPlanning_, scheduler_, linkAdaptation_, transmission_.
+       * Calls radioChannel_->generateSmallScaleFading.
        */
       void initialize();
       
@@ -88,25 +116,23 @@ class Simulation
       void initializeDrop();
       
       /**
-       * Calcula o ruído acrescido de interferencia, aloca os recursos e transmite
-       * um certo números de vezes setados em SimulationParameters.dat StepsPerDrop.
+       * Calculates the SINR, alklocates the resources and transmits, as settled on SimulationParameters.dat.
        */
       void runDrop();
       
       /**
-       * Inicia outra rodada
+       * Begin other Simulation round.
        * 
        */
       void runSimulation();
       
      /**
-       * Finaliza a rodada limpando todos os dados
-       * 
+       * Finishes the round cleaning all data.
        */
       void finalizeDrop();
       
       /**
-       * Inicializa e finaliza a simulacao
+       * Starts and finishes the simulation.
        * 
        */
       void runCampaign();

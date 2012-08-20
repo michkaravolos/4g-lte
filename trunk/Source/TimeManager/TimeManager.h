@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _TimeManager_h_
 #define _TimeManager_h_
@@ -44,13 +51,12 @@ class TimeManager
       static TimeManager* getInstance();
 
       /**
-       * Define os Parâmetros
-       *  
+       * Initialize totalSteps_ and timeStep_.
        */
       void setParameters();
       
       /**
-       * Inicializa o TimeManager
+       * Initialize currentStep_, currentTime_, currentResolutionStep_, totalTime_ and resolutionStepHasChanged_.
        * 
        */
       void initialize();
@@ -62,25 +68,25 @@ class TimeManager
       void clear();
       
       /**
-       * Retorna o pacote atual
+       * Interface.
        * 
        */
       int getCurrentStep();
       
        /**
-       * Retorna a resolução corrente do pacote
+       * Interface.
        * 
        */
       int getCurrentResolutionStep();
       
       /**
-       * Retorna o tempo atual
+       * Interface.
        * 
        */
       double getCurrentTime();
       
       /**
-       * Retorna o tempo do pacote
+       * Interface.
        * 
        */
       double getTimeStep();
@@ -92,19 +98,19 @@ class TimeManager
       void update();
       
       /**
-       * Define a resolução do tempo
+       * Set Time Resolution.
        * 
        */
       void setTimeResolution( const double timeStep );
       
       /**
-       * Valida o tempo
+       * Interface.
        * 
        */
       bool validateTime();
       
       /**
-       * Verifica se a resolução do tempo mudou
+       * Interface.
        * 
        */
       bool hasResolutionStepChanged();
@@ -112,13 +118,13 @@ class TimeManager
        
       
    private:
-       TimeManager();
+
       
       /**
        * Constructor.
-       * Left empty.
+       * Calls setParameters.
        */
-     
+       TimeManager();     
       
       /**
        * Member.

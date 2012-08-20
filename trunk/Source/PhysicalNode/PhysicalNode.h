@@ -6,7 +6,15 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
  */ 
+
 
 #ifndef _PhysicalNode_h_
 #define _PhysicalNode_h_
@@ -47,49 +55,49 @@ class PhysicalNode
       virtual ~PhysicalNode();
       
       /**
-       * Retorna a posição
+       * Returns position.
        * 
        */
       Basic::Position getPosition();
       
       /**
-       * Retorna o ID
+       * Returns the ID.
        *  
        */
       int getId();
       
       /**
-       * Evoca Gain
+       * Returns the Gain.
        * 
        */
       virtual double getGain( double theta );
       
       /**
-       * Retorna o site
+       * Returns the Site.
        * 
        */
       int getSite();
       
       /**
-       * Retorna o setor
+       * Returns the sector.
        * 
        */
       int getSector();
       
       /**
-       * Evoca getRawBits
+       * Returns the amount of raw bits.
        *  
        */
       int getRawBits();
       
       /**
-       * Evoca getEffectiveBits
+       * Returns the amount of effective bits.
        * 
        */
       double getEffectiveBits();
       
       /**
-       * Evoca setBits
+       * Calls setBits.
        * 
        */
       void setBits( int rawBits, double effectiveBits );
@@ -97,19 +105,20 @@ class PhysicalNode
    protected:
       
       /**
-       * Bits brutos
+       * Raw Bits.
+       * Contains effective bits and redudancy bits.
        * 
        */
       int rawBits_;
       
       /**
-       * Bits efetivos
+       * Effective Bits.
        *
        */
       double effectiveBits_;
       
       /**
-       * Posição no Grid
+       * Absolute Position on the Grid.
        * 
        */
       Basic::Position position_;
@@ -121,7 +130,7 @@ class PhysicalNode
       int site_;
       
       /**
-       * Setor
+       * Sector
        * 
        */
       int sector_;
@@ -133,7 +142,7 @@ class PhysicalNode
       int id_;
       
       /**
-       * Dispositivo
+       * Device
        * 
        */
       Device* device_;

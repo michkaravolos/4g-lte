@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _Scheduler_h_
 #define _Scheduler_h_
@@ -44,7 +51,7 @@ class Scheduler
       static Scheduler* getInstance();
 
       /**
-       * Define os parametros
+       * Initialize parameters numberENodeBs_ and schedulingAlgorithm_.
        * 
        */
       void setParameters();
@@ -57,19 +64,17 @@ class Scheduler
       
       /**
        * Interface.
-       * Detailed description.
+       * Left empty.
        */
       void clear();
       
       /**
-       * Define o algoritmo de alocação de recursos
-       * 
+       * Defines the resource alocation algorithm according to schedulingAlgorithm_.
        */
       void setSchedulingAlgorithm();
       
       /**
-       * Realiza a alocação de recursos para as EnodeBs
-       * 
+       * Allocation of resources to ENodeBs.
        */
       void schedule(int Direction);
       
@@ -108,7 +113,7 @@ class Scheduler
       
       /**
        * Member.
-       * Left empty.
+       * Defined in SchedulerParameters.
        */      
       int schedulingAlgorithm_; 
       

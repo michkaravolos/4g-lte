@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _FrequencyPlanning_h_
 #define _FrequencyPlanning_h_
@@ -47,25 +54,28 @@ class FrequencyPlanning
 
       /**
        * Interface.
-       * Detailed description. 
+       * Initializes numberENodeBs_, systemBandwitdh_, subcarrierBandwitdh_, centralFrequency_, reuse_, numberSCperPRB_. 
        */
       void setParameters();
       
       /**
        * Interface.
-       * Detailed description. 
+       * Initializes simulationEnvironment_, numberSubcarriers_, numberPRBs_, each subcarrierFrequencies_ and each PRBFrequencies_.
        */
       void initialize();
       
       /**
        * Interface.
-       * Detailed description.
+       * Clears frequencies_, subcarrierFrequencies_, PRBFrequencies_.
        */
       void clear();
       
       /**
        * Interface.
-       * Detailed description. 
+       * Allocate Frquencies determinated by the parameter reuse_.
+       * reuse_ = 0: All the frequencies are used in all sectors of cell.
+       * reuse_ = 1: The available frequencies are divided between the 3 sectors, each one of them with on
+       * band of frequencies. The layout of reuse is the same in all the cells.
        */
       void allocateFrequencies();
       
@@ -154,6 +164,11 @@ class FrequencyPlanning
        * Left empty.
        */      
       double centralFrequency_;
+        /**
+       * Member.
+       * Left empty.
+       */ 
+       int reuse_;
 };
 
 };

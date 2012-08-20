@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 
 // *****************************************************************************
@@ -32,10 +39,6 @@
 // *****************************************************************************
 // Constructors
 // *****************************************************************************
-/**
-       * Define os parametros de simulacao e inicializa as demais classes relacionadas a simulacao
-       * 
-       */
 Simulation::
 Simulation::Simulation()
 {
@@ -56,10 +59,6 @@ Simulation::~Simulation()
 // *****************************************************************************
 // Interface
 // *****************************************************************************
-/**
-       * Resgata os parametros de simulacao setados em SimulationParameters.dat
-       * e define o numero de simulacoes.
-       */
 void
 Simulation::
 Simulation::setParameters()
@@ -224,10 +223,7 @@ Simulation::runCampaign()
 }
 
 // -----------------------------------------------------------------------------
-/**
-       * 
-       * Testa o canal
-       */
+
 void
 Simulation::
 Simulation::testChannel()
@@ -276,10 +272,7 @@ Simulation::testChannel()
 }
 
 // -----------------------------------------------------------------------------
-/**
-       * 
-       * Testa as perdas
-       */
+
 void
 Simulation::
 Simulation::testLosses()
@@ -327,10 +320,7 @@ Simulation::testLosses()
 }
 
 // -----------------------------------------------------------------------------
-/**
-       * Testa o Fading 
-       * 
-       */
+
 void
 Simulation::
 Simulation::testFading()
@@ -345,10 +335,7 @@ Simulation::testFading()
 }
 
 // -----------------------------------------------------------------------------
-/**
-       * Testa a perda do caminho
-       * 
-       */
+
 void
 Simulation::
 Simulation::testPathLoss()
@@ -425,10 +412,7 @@ Simulation::testPathLoss()
 }
 
 // -----------------------------------------------------------------------------
-/**
-       * Testa os links
-       * 
-       */
+
 void
 Simulation::
 Simulation::testLink()
@@ -446,10 +430,7 @@ Simulation::testLink()
 }
 
 // -----------------------------------------------------------------------------
-/**
-       * Exibe os resultados de taxa bruta e efetiva
-       * 
-       */
+
 void
 Simulation::
 Simulation::testResults()
@@ -474,10 +455,7 @@ Simulation::testResults()
 }
 
 // -----------------------------------------------------------------------------
-/**
-       * Exibe o total de links das ENodeBs que são 57
-       * 
-       */
+
 void
 Simulation::
 Simulation::testFrequencyPlanning()

@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _LargeScaleFading_h_
 #define _LargeScaleFading_h_
@@ -40,49 +47,42 @@ class LargeScaleFading : public Fading
       virtual ~LargeScaleFading();
       
       /**
-       * Calcula o fading em dB
-       * 
+       * Calculates the fading in dB.
        */   
       double generateFading_dB( double distance );
       
       /**
-       * Calcula a perda de caminho em dB
-       * 
+       * Calculates the Path Loss in dB.
        */   
       double generatePathLoss_dB( double distance );
       
       /**
-       * Calcula o sombreamento em dB
-       * 
+       * Calculates the Shadowing in dB.
        */   
       double generateShadowing_dB();
       
       /**
-       * Calcula o fading
-       * 
+       * Calculates the fading.
        */   
       double generateFading( double distance );
       
       /**
-       * Calcula a perda de caminho
-       * 
+       * Calculates the Path Loss.
        */   
       double generatePathLoss( double distance );
       
       /**
-       * Calcula o sombreamento
-       * 
+       * Calculates the Shadowing.
        */   
       double generateShadowing();
       
       /**
-       * Define os parâmetros
-       * 
+       * Defines mean_, sd_.
        */
       void setParameters();
       
       /**
-       * Inicializa LargeScaleFading
+       * Initializes Normal_RNG n, LargeScaleFading.
        * 
        */
       void initialize();
@@ -91,7 +91,7 @@ class LargeScaleFading : public Fading
    protected:
       
       /**
-       * Média
+       * Mean.
        * 
        */      
       double mean_;

@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _FREQUENCY_SELECTIVE_CHANNEL_H_
 #define _FREQUENCY_SELECTIVE_CHANNEL_H_
@@ -31,8 +38,7 @@ class FrequencySelectiveChannel : public Channel
    public:
    
       /**
-       * Cria o canal seletivo em frequência
-       * 
+       * Creates the selective channel on the frequency.
        */            
       void generateChannel( Array<cvec>& Channel,
                                     const double BW, 

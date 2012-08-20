@@ -6,7 +6,15 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
+
 
 #ifndef _Link_h_
 #define _Link_h_
@@ -47,37 +55,41 @@ class Link
       static Link* getInstance();
       
       /**
-       * Define os parametros
-       * 
+       * Set these Parameters:
+       * numberUsers_, numberENodeBs_ and temperature from simulation parameters.
+       * noiseFigure_ from uplink parameters.
+       * boltzmannConstant_ (1.3806503e-23).
+       * bandwidth_, numberAntennas_ and reuse_ from system parameters.
        */
       void setParameters();
       
       /**
-       * Inicializa o link
+       * Initialize these parameters:
+       * numberUsers_, losses_, userId_, eNodeBId_, InterLimit_ and SoundingLimit_ from simulation parameters.
        * 
        */
       void initialize();
       
       /**
        * Interface.
-       * Detailed description.
+       * Sets size 0 to userId_, eNodeBId_ and losses.
        */
       void clear();
       
       /**
-       * Inicializa os links
+       * Initialize links.
        * 
        */
       void createLinks();
       
       /**
-       * Retorna as perdas
+       * Return Losses.
        * 
        */
       double getLoss( int i );
       
       /**
-       * Calcula o fading total entre uma EnodeB e um usuario naquele tempo, naquela frequencia e com aquela antena
+       * Calculates the total fading between an ENodeB and an user with the parameteres.
        * 
        */
       double getTotalFading( int eNodeBId, 
@@ -87,31 +99,29 @@ class Link
                              int antenna );
       
       /**
-       * Calcula o CQI
+       * Calculates CQI.
        * 
        */
       void calculateCQI();
       
       /**
-       * Evoca calculateSINRs e calculateCQI
+       * Calls calculateSINRs e calculateCQI
        * 
        */
       void calculateSINR();
        /**
-       * Evoca calculateSINRs e calculateCQI
+       * Calls calculateSINRs e calculateCQI
        * 
        */
       void calculateSINR1(int index, ivec& SchedulerUsers_, vec frequencies, bool calc);
       
       /**
-       * Calcula as SINRs do usuarios
-       * 
+       * Calculates the SINRs of users.
        */
       void calculateSINRs1(int scheduleduser, ivec& SchedulerUsers_, vec frequencies, bool calc);
       
       /**
-       * Calcula a SINR para cada usuario
-       * 
+       * Calculate the SINR for each user.
        */
       double calculateSINRPerUser1( int userId,
                                    int eNodeBId,
@@ -139,8 +149,7 @@ class Link
                                    int antenna );
       
       /**
-       * Calcula o Fading entre o Usuario interferente e a ENodeB do usuario em questao
-       * . 
+       * Calculate the fading between the user that are producing interference and the ENodeB.
        */
       
       double CalculateInterFading(int userId, 
@@ -162,49 +171,49 @@ class Link
       
       /**
        * Member.
-       * Left empty.
+       * Calls setParameters.
        */      
       static Link* instance_;    
       
       /**
        * Member.
-       * Left empty.
+       * The number of Users.
        */      
       int numberUsers_;
       
       /**
        * Member.
-       * Left empty.
+       * The number of ENodeBs.
        */      
       int numberENodeBs_;
       
       /**
        * Member.
-       * Left empty.
+       * Vector of users.
        */      
       ivec userId_;
       
       /**
        * Member.
-       * Left empty.
+       * Vector of eNodeBs.
        */      
       ivec eNodeBId_;
       
       /**
        * Member.
-       * Left empty.
+       * Vector of losses.
        */      
       vec losses_;   
       
       /**
        * Member.
-       * Left empty.
+       * Bind the Link to the radioChannel of the simulation.
        */      
       RadioChannel::RadioChannel* radioChannel_;
       
       /**
        * Member.
-       * Left empty.
+       * Bind the Link to the Simulation Envirioment.
        */      
       SimulationEnvironment::SimulationEnvironment* simulationEnvironment_;
       
@@ -216,7 +225,7 @@ class Link
       
       /**
        * Member.
-       * Left empty.
+       * Equals to 1.3806503e-23
        */      
       double boltzmannConstant_;
       
@@ -228,13 +237,13 @@ class Link
       
       /**
        * Member.
-       * Left empty.
+       * Given in Kelvin.
        */      
       double temperature_;
       
       /**
        * Member.
-       * Left empty.
+       * May not being used.
        */      
       int numberAntennas_;
       /**
@@ -246,7 +255,17 @@ class Link
        * Member.
        * Left empty.
        */      
-      int WaySimulation_;
+      int reuse_;
+       /**
+       * Member.
+       * Left empty.
+       */      
+      int SoundingLimit_;
+       /**
+       * Member.
+       * Left empty.
+       */      
+      int InterLimit_;
       
       
       

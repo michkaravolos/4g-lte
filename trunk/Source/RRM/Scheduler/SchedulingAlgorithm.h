@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _SchedulingAlgorithm_h_
 #define _SchedulingAlgorithm_h_
@@ -39,24 +46,23 @@ class SchedulingAlgorithm
 
       /**
        * Constructor.
-       * Detailed description.
+       * Calls setParameters and initialize.
        */   
       SchedulingAlgorithm();
       
       /**
        * Destructor.
-       * Detailed description.
+       * Clears usersPRBs_.
        */   
       virtual ~SchedulingAlgorithm();
 
       /**
-       * Define os parametros
-       * 
+       * Defines numberUsersPerSlot_, sameUserAtSlots_, numberAntennas_.
        */   
       virtual void setParameters();
       
       /**
-       * Inicializa os parametros
+       * Initializes linkAdaptation_, timeManager_, usersPRBs_ and totalSINR_.
        *
        */   
       virtual void initialize();
@@ -74,7 +80,7 @@ class SchedulingAlgorithm
       //virtual void antennaSchedule();
       
       /**
-       * Realiza a alocação de recursos por usuário
+       * Allocates resources per user.
        * 
        */  
       virtual void schedule( const ivec& users, 
@@ -116,33 +122,31 @@ class SchedulingAlgorithm
      
       
       /**
-       * Configura os Physical Resource Blocks
-       * 
+       * Configures the Physical Resource Blocks.
        */  
       virtual void configurePRBs( PhysicalLayer::PhysicalLayer* pl );
       
       /**
-       * Configura os PRBs por slot
+       * Configures the PRBs per slot.
        * 
        */  
       virtual void configurePRBsPerSlot( PhysicalLayer::PhysicalLayer* pl );
       
       /**
-       * Calcula a metrica no dominio do tempo
-       * 
+       * Calculates the metric in time domain.
        */   
       virtual double calculateTimeMetric( double averageCQI, 
                                           double throughput ) = 0;
       
       /**
-       * Calcula a metrica no dominio da frequencia
+       * Calculates the metric in frequency domain.
        * 
        */   
       virtual double calculateFrequencyMetric( double averageCQI, 
                                                double throughput ) = 0;
       
       /**
-       * Calcula a metrica espacial
+       * Calculates the metric in space domain.
        * 
        */   
       virtual double calculateSpaceMetric( double averageCQI, 
@@ -169,7 +173,7 @@ class SchedulingAlgorithm
       
         
       /**
-       * Aloca o tempo
+       * Allocate time.
        * 
        */  
       virtual void timeSchedule( const ivec& users, ivec& scheduledUsers );

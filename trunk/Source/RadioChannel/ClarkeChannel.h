@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _CLARKE_CHANNEL_H_
 #define _CLARKE_CHANNEL_H_
@@ -30,21 +37,18 @@ class ClarkeChannel : public Channel
    public:
    
       /**
-       * Gera vetor complexo
-       * 
+       * Generates the complex vector.
        */    
       cvec generateComplexVector( int N, double fm );
       
       /**
-       * Gera vetor abosuto
-       * 
+       * Generates the absolute vector.
        */  
       vec generateAbsoluteVector( int N, double fm );
       
       
       /**
-       * Calcula o espectro
-       * 
+       * Calculates the spectrum.
        */
       double calculateSpectrum( double f, double fc, double fm );
       

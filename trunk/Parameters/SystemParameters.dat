@@ -3,7 +3,9 @@ centralFrequency = 2000000000 # 2e9
 subcarrierBandwidth = 15000 # 15e3
 totalPower = 0.1995 # 46dBm;
 numberTransmitAntennas = 1
-
+reuse = 0
+# 0 - Without Reuse
+# 1 - Reuse 1/3
 
 
 

@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _Transmitter_h_
 #define _Transmitter_h_
@@ -41,25 +48,26 @@ class Transmitter : public Device
       virtual ~Transmitter();
       
       /**
-       * Define os parâmetros
+       * Defines totalPower_.
        * 
        */
       void setParameters();
       
       /**
-       * Inicializa o transmissor
-       * 
+       * Inicializes Direction_ and antenna_.
+       * If Direction_ ==0, antenna_ = GenericAntenna.
+       * Else, antenna_ = Antenna.
        */
       void initialize();
       
       /**
-       * Retorna o ganho
+       * Returns Gain.
        * 
        */
       double getGain( double theta );
       
       /**
-       * Evoca getPower
+       * Returns totalPower_.
        * 
        */
       double getPower();
@@ -69,7 +77,7 @@ class Transmitter : public Device
       
 
       /**
-       * Potencia Toral
+       * Total Power of the transmitter.
        * 
        */
       double totalPower_;

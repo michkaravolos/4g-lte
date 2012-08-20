@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _Frame_h_
 #define _Frame_h_
@@ -29,19 +36,19 @@ class Frame
 
       /**
        * Constructor.
-       * Detailed description.
+       * Left empty.
        */   
       Frame();
       
       /**
        * Destructor.
-       * Detailed description.
+       * Left empty.
        */   
       virtual ~Frame();
 
       /**
        * Interface.
-       * Detailed description.
+       * Left empty.
        */   
       void interface();
 

@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _SimulationEnvironment_h_
 #define _SimulationEnvironment_h_
@@ -48,37 +55,37 @@ class SimulationEnvironment
       static SimulationEnvironment* getInstance();
       
       /**
-       * Define os parametros
+       * Define numberUsers_ and numberENodeBs_.
        * 
        */
       void setParameters();
       
       /**
        * Interface.
-       * Detailed description.
+       * Clear users_ and eNodeBs_.
        */
       void clear();
       
       /**
-       * Cria os usuários
+       * Creates Users and store than in users_.
        * 
        */
       void createUsers();
       
       /**
-       * Cria as EnodeBs
+       * Creates ENodeBs and store than in eNodeBs_.
        * 
        */
       void createENodeBs();  
       
       /**
-       * Retorna um usuario pelo seu id
+       * Gets the user by its ID.
        * 
        */
       PhysicalNode::User* getUser( int id );   
       
       /**
-       * Retorna uma EnodeB pelo seu id
+       * Gets the ENodeB by its ID.
        * 
        */
       PhysicalNode::ENodeB* getENodeB( int id ); 
@@ -96,8 +103,8 @@ class SimulationEnvironment
       Array<PhysicalNode::PhysicalNode*>* getENodeBs(); 
       
       /**
-       * Inicializa o ambiente de simulação
-       * 
+       * Initializes numberUsers_, mobility_, userIdCounter_, eNodeBIdCounter_.
+       * Calls createUsers and createENodeBs.
        */
       void initialize();  
       
@@ -111,7 +118,7 @@ class SimulationEnvironment
       
       /**
        * Constructor.
-       * Left empty.
+       * Calls setParameters.
        */
       SimulationEnvironment();
       
@@ -135,13 +142,13 @@ class SimulationEnvironment
       
       /**
        * Member.
-       * Left empty.
+       * Number of ENodeBs.
        */      
       int numberENodeBs_;       
       
       /**
        * Member.
-       * Left empty.
+       * Number of Users.
        */      
       int numberUsers_;
       
