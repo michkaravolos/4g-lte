@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _Transmission_h_
 #define _Transmission_h_
@@ -45,7 +52,7 @@ class Transmission
 
       /**
        * Interface.
-       * Detailed description. 
+       * Initialize numberENodeBs_ from simulation parameters.
        */
       void setParameters();
       
@@ -57,13 +64,13 @@ class Transmission
       
       /**
        * Interface.
-       * Detailed description. 
+       * Left empty. 
        */
       void clear();
       
       /**
        * Interface.
-       * Detailed description. 
+       * Call transmit of every eNodeB. 
        */
       void transmit();
       
@@ -71,7 +78,7 @@ class Transmission
       
       /**
        * Constructor.
-       * Left empty.
+       * Initialize name_.
        */
       Transmission();
       
@@ -89,7 +96,7 @@ class Transmission
       
       /**
        * Member.
-       * Left empty.
+       * The title of Transmission instance.
        */      
       string name_;    
       

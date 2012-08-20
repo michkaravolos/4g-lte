@@ -6,6 +6,13 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
  */
 
 // *****************************************************************************
@@ -66,6 +73,7 @@ SystemParameters::setParameters()
    totalPower = 39.810; // 46dBm;
    numberTransmitAntennas = 4;
    fileName_ = string( "../Parameters/SystemParameters.dat" );
+   reuse=0;
 }
 
 //------------------------------------------------------------------------------
@@ -80,6 +88,8 @@ SystemParameters::readFile()
    f.read( fileName_, "subcarrierBandwidth", subcarrierBandwidth );
    f.read( fileName_, "totalPower", totalPower );
    f.read( fileName_, "numberTransmitAntennas", numberTransmitAntennas );
+   f.read( fileName_, "reuse", reuse );
+   
 }
 
 //------------------------------------------------------------------------------

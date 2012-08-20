@@ -6,7 +6,15 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ *
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
+
 
 #ifndef _VectorFunctions_h_
 #define _VectorFunctions_h_
@@ -29,43 +37,47 @@ class VectorFunctions
 
       /**
        * Constructor.
-       * Detailed description.
+       * Left empty.
        */   
       VectorFunctions();
       
       /**
        * Destructor.
-       * Detailed description.
+       * Left empty.
        */	
       virtual ~VectorFunctions();
       
       /**
        * Interface.
-       * Detailed description.
+       * @param average If TRUE, normalizes by the average value of the sequence.
+       * Normalizes the complex sequence.
        */
       void normalize( cvec& sequence, bool average );
       
       /**
        * Interface.
-       * Detailed description.
+       * @param average If TRUE, normalizes by the average value of the sequence.
+       * Normalizes the sequence.
        */
       void normalize( vec& sequence, bool average );
       
       /**
        * Interface.
-       * Detailed description.
+       * Normalizes the matrix.
        */
       void normalize( Array<cvec>& matrix, bool average );
       
       /**
        * Interface.
-       * Detailed description.
+       * @param cols Defines the size of each row of sequence.
+       * Sets zeros on each col of each row of sequence.
        */
       void setZerosArray( Array<vec>& sequence, int cols );
       
       /**
        * Interface.
-       * Detailed description.
+       * @param cols Defines the size of each row of sequence.
+       * Sets zeros on each col of each row of complex sequence.
        */
       void setZerosArray( Array<cvec>& sequence, int cols );
       
@@ -101,7 +113,8 @@ class VectorFunctions
       
       /**
        * Interface.
-       * Detailed description.
+       * @param input Complex vector.
+       * @param output Vector of square value of each row of input.
        */
       void generateSquare( cvec& input, vec& output );
 

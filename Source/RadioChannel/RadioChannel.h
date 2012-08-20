@@ -6,6 +6,13 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
  */ 
 
 #ifndef _RadioChannel_h_
@@ -49,72 +56,70 @@ class RadioChannel
       static RadioChannel* getInstance();
       
       /**
-       * Define os parâmetros
+       * Defines numberUsers_, numberENodeBs_, shouldReadFile_, fileName_, frequencyStep_, timeStep_, numberTransmitAntennas_.
        * 
        */
       void setParameters();
       
       /**
-       * Inicializa o canal de rádio
-       * 
+       * Initializes the radio channel.
+       * Defines largeScaleMatrix_, usersSmallScaleMatrixIndex_, 
        */
       void initialize();
       
       /**
-       * Limpa a matriz de índices do fading de pequena escala
+       * Clears usersSmallScaleMatrixIndex_.
        * 
        */
       void clear();
       
       /**
-       * Gera o fading de larga escala
+       * Generates largeScaleMatrix_.
        * 
        */
       void generateLargeScaleFading();
       
       /**
-       * Gera o fading de pequena escala
+       * Generates smallScaleFading_.
        * 
        */
       void generateSmallScaleFading();
       
       /**
-       * Gera os índices do fading de pequena escala
+       * Generates usersSmallScaleMatrixIndex_.
        * 
        */
       void generateSmallScaleFadingIndexes();
       
       /**
-       * Retorna o fading de larga escala entre o usuário e a EnodeB
-       * 
+       * Returns the large scale fading between user and eNodeB.
        */
       double getLargeScaleFading( PhysicalNode::PhysicalNode* user,
                                   PhysicalNode::PhysicalNode* eNodeB );
       
      /**
-       * Retorna o fading de larga escala entre o usuário e a EnodeB em dB
+       * Returns the large scale fading between user and eNodeB in dB.
        * 
        */
       double getLargeScaleFading_dB( PhysicalNode::PhysicalNode* user,
                                      PhysicalNode::PhysicalNode* eNodeB );
       
      /**
-       * Retorna o fading de larga escala entre o usuário e a EnodeB
+       * Returns the large scale fading between user and eNodeB.
        * 
        */
       double getLargeScaleFading( int userId,
                                   int eNodeBId );
       
       /**
-       * Retorna o fading de larga escala entre o usuário e a EnodeB em dB
+       * Returns the large scale fading between user and eNodeB in dB.
        * 
        */
       double getLargeScaleFading_dB( int userId,
                                      int eNodeBId);
       
       /**
-       *Retorna o fading naquele instante naquela frequência
-       *
+       * Returns the fading on the specific moment on the specific frequency.
        */
       double getFading( PhysicalNode::PhysicalNode* user,
                         PhysicalNode::PhysicalNode* eNodeB,
@@ -123,7 +128,7 @@ class RadioChannel
                         int antenna );
       
       /**
-       *Retorna o fading naquele instante naquela frequência
+       * Returns the fading on the specific moment on the specific frequency.
        *
        */
       double getFading( int userId,
@@ -133,7 +138,7 @@ class RadioChannel
                         int antenna );
       
       /**
-       * Retorna o timestep
+       * Returns the timestep.
        * 
        */
       double getTimeStep();

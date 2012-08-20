@@ -1,12 +1,19 @@
 /**
- * @file    receiver.h
+ * @file    Receiver.h
  * Name:    3G LTE System Simulator
  * @author  Guilherme Silveira Rabelo
  * Date:    03/21/2008
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _Reciever_h_
 #define _Reciever_h_
@@ -20,10 +27,10 @@ namespace PhysicalNode
 {
 
 /**
- * receiver Class.
+ * Receiver Class.
  * Detailed description.
  */
-class receiver : public Device
+class Receiver : public Device
 {
    public:
 
@@ -31,33 +38,32 @@ class receiver : public Device
        * Constructor.
        * Detailed description.
        */   
-      receiver(int orientation);
+      Receiver(int orientation);
       
       /**
        * Destructor.
        * Detailed description.
        */   
-      virtual ~receiver();
+      virtual ~Receiver();
       
       /**
-       * Define os parametros
+       * Defines totalPower_.
        * 
        */
       void setParameters();
       
       /**
-       * Inicializa o receiver
-       * 
+       * Initializes antenna_.
+       * If Direction_ ==0, antenna_ = Antenna.
+       * Else, antenna_ = GenericAntenna.
        */
       void initialize();
       
       /**
-       * Evoca getGain
        * 
        */
       virtual double getGain( double theta );
       /**
-       * Evoca getPower
        * 
        */
       double getPower();
@@ -74,7 +80,7 @@ class receiver : public Device
       
       /**
        * Potencia Toral
-       * Trouxe de Transmitter para que receiver também tenha Potencia Total.
+       * Trouxe de Transmitter para que Receiver também tenha Potencia Total.
        */
       double totalPower_;
       
@@ -93,7 +99,7 @@ class receiver : public Device
 inline
 double
 PhysicalNode::
-receiver::getPower()
+Receiver::getPower()
 {
    return totalPower_;
 };

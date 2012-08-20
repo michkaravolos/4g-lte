@@ -6,6 +6,13 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
  */
 
 // *****************************************************************************
@@ -83,7 +90,7 @@ FrequencyPlanning::setParameters()
    systemBandwitdh_ = sysp->systemBandwidth;
    subcarrierBandwitdh_ = sysp->subcarrierBandwidth;
    centralFrequency_ = sysp->centralFrequency;
-   
+   reuse_=sysp->reuse;
    numberSCperPRB_ = plp->numberSCPerPRB;
 }
 
@@ -144,10 +151,45 @@ FrequencyPlanning::allocateFrequencies()
    for( int i = 0; i < numberENodeBs_; ++i )
    {
       eNodeB = simulationEnvironment_->getENodeB( i );
-      pl = new PhysicalLayer::PhysicalLayer( PRBFrequencies_, 
-         subcarrierFrequencies_ );
-      eNodeB->setPhysicalLayer( pl );
-      eNodeB->informUserFrequencies();
+     switch(reuse_)
+{
+
+case 0:
+	  pl = new PhysicalLayer::PhysicalLayer( PRBFrequencies_,
+	                    subcarrierFrequencies_);
+	                eNodeB->setPhysicalLayer( pl );
+	                eNodeB->informUserFrequencies();
+	       	break;
+
+case 1:
+	switch(eNodeB->getSector())
+	{
+    case 0:
+
+  	  pl = new PhysicalLayer::PhysicalLayer( PRBFrequencies_.get(0,17),
+  	          subcarrierFrequencies_ );
+  	       eNodeB->setPhysicalLayer( pl );
+  	       eNodeB->informUserFrequencies();
+  	       break;
+    case 1:
+
+       pl = new PhysicalLayer::PhysicalLayer( PRBFrequencies_.get(19,36),
+                subcarrierFrequencies_ );
+            eNodeB->setPhysicalLayer( pl );
+            eNodeB->informUserFrequencies();
+            break;
+
+    case 2:
+
+       pl = new PhysicalLayer::PhysicalLayer( PRBFrequencies_.get(37,54),
+                subcarrierFrequencies_);
+            eNodeB->setPhysicalLayer( pl );
+            eNodeB->informUserFrequencies();
+            break;
+
+	}
+	break;
+}
       
    }
 }

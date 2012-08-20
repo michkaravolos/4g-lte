@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 
 // *****************************************************************************
@@ -49,7 +56,8 @@ File::~File()
 // *****************************************************************************
 // Interface
 // *****************************************************************************
-void 
+
+void 
 Parameters::
 File::write( char* fileName, vec& xValues, vec& yValues )
 {

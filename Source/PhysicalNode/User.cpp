@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 // *****************************************************************************
 // Includes
@@ -101,6 +108,7 @@ User::setParameters()
    minSINRConsidered_ = up->minSINRConsidered;
    CQIUpdateCounter_ = up->CQIUpdatePeriod;
    CQISD_ = up->CQISD;
+   reuse_=sysp->reuse;
    for( int i = 0; i < CQI_.size(); ++i )
    {
       CQI_( i ).set_size( up->CQIReportDelay + 1 );
@@ -209,7 +217,40 @@ User::reportCQI( double frequency, int antenna )
    int index = -1;
    int size = frequencies_.size();
    
-   for( int i = 0; i < size; ++i )
+   int bindex;
+   int findex;
+
+
+switch(reuse_)
+   {
+   case 0:
+  	 bindex=0;
+  	 findex=size;
+  	 break;
+
+   case 1:
+  	 switch(eNodeBSector_)
+  	 {
+  	 case 0:
+  	   bindex=0;
+  	   findex=size/3;
+  	   break;
+
+  	 case 1:
+  	   bindex=size/3;
+  	   findex=(size/3)*2;
+  	   break;
+
+  	 case 2:
+  	   bindex=(size/3)*2;
+  	   findex=size;
+  	   break;
+  	 }
+
+  	 break;
+   }
+   
+   for( int i = bindex; i < findex; ++i )
    {
       if( frequency == frequencies_( i ) )
       {
@@ -229,10 +270,10 @@ User::reportCQI( double frequency, int antenna )
 
 void
 PhysicalNode::
-User::storeSINR( double sinr, double frequency, int antenna )
+User::storeSINR( double sinr, double frequency, int antenna)
 {
    int index = -1;
-   //int size = frequencies_.size();
+   int size = frequencies_.size();
    //double f = 0.0;
    index = static_cast<int> ( frequency / 15e3 );
    //cout << frequencies_ << endl;
@@ -244,14 +285,43 @@ User::storeSINR( double sinr, double frequency, int antenna )
          break;
       }
    }*/
+  
+   switch(reuse_)
+   {
+   case 0:
+	   
+  	 break;
+
+   case 1:
+
+	switch(eNodeBSector_)
+  	 {
+  	 case 0:
+  		index = index;
+  	   break;
+
+  	 case 1:
+  		 index = index - size/3;
+  	  	   break;
+
+  	 case 2:
+  		index = index - 2*(size/3);
+  	   break;
+
+  	 }
+  	 break;
+   }
+    
    
    if( index == -1 )
    {
       it_error("User CQI report: index out of range.");
    }
-   
+  // cout<<index<<" "<<frequency<<endl;
    SINR_( antenna )( index ) = sinr;
    //cout << sinr << ", ";
+   
+    
 }
 
 //------------------------------------------------------------------------------
@@ -263,8 +333,40 @@ User::getSINR( double frequency, int antenna )
    int index = -1;
    int size = frequencies_.size();
    
-   for( int i = 0; i < size; ++i )
-   {
+   int bindex;
+   int findex;
+
+   
+   switch(reuse_)
+      {
+      case 0:
+     	 bindex=0;
+     	 findex=size;
+     	 break;
+
+      case 1:
+     	 switch(eNodeBSector_)
+     	 {
+     	 case 0:
+     	   bindex=0;
+     	   findex=size/3;
+     	   break;
+
+     	 case 1:
+     	   bindex=size/3;
+     	   findex=(size/3)*2;
+     	   break;
+
+     	 case 2:
+     	   bindex=(size/3)*2;
+     	   findex=size;
+     	   break;
+     	 }
+
+     	 break;
+      }
+   for( int i = bindex; i < findex; ++i )
+      {
       if( frequency == frequencies_( i ) )
       {
          index = i;
@@ -278,6 +380,7 @@ User::getSINR( double frequency, int antenna )
    
    return SINR_( antenna )( index );
 }
+
 
 //------------------------------------------------------------------------------
 
@@ -373,9 +476,50 @@ User::getAverageCQI( vec frequencies, int antenna )
    int size = frequencies_.size();
    int s = 0;
    double cqi = 0.0;
-   for( int i = 0; i < freqSize; ++i )
+   int bindex0;
+   int findex0;
+   int bindex1;
+   int findex1;
+
+switch(reuse_)
    {
-      for( int j = 0; j < size; ++j)
+   case 0:
+  	  bindex0=0;
+  	  findex0=freqSize;
+  	  bindex1=0;
+  	  findex1=size;
+  	 break;
+
+   case 1:
+	   switch(eNodeBSector_)
+	   	 {
+     case 0:
+  	   bindex0=0;
+  	   findex0=freqSize/3;
+       bindex1=0;
+       findex1=size/3;
+  	   break;
+
+     case 1:
+  	   bindex0=freqSize/3;
+  	   findex0=(freqSize/3)*2;
+       bindex1=size/3;
+       findex1=(size/3)*2;
+  	   break;
+
+     case 2:
+  	   bindex0=(freqSize/3)*2;
+  	   findex0=freqSize;
+       bindex1=(size/3)*2;
+       findex1=size;
+  	   break;
+
+  	 }
+   }
+   
+   for( int i =bindex0; i < findex0; ++i )
+    {
+      for( int j = bindex1; j < findex1; ++j)
       {
          if( frequencies( i )  == frequencies_( j ) )
          {
@@ -390,10 +534,11 @@ User::getAverageCQI( vec frequencies, int antenna )
             }
          }
       }
+     }
       
       
       
-   }
+   
    //cout << SINR_ << endl;
    return cqi / s;
 };
@@ -410,19 +555,56 @@ User::setFrequencies( vec frequencies )
    frequencies_ = frequencies;
    int slots = 0;
    int antennas = CQI_.size();
-   for( int i = 0; i < antennas; ++i )
+   int bindex; // Modified by Igor Abrahão
+   int findex;// Modified by Igor Abrahão
+   int aux;
+
+   switch(reuse_)
+      {
+      case 0:
+     	 bindex=0;
+     	 findex=size;
+     	 break;
+
+      case 1:
+     	 switch(eNodeBSector_)
+     	 {
+     	 case 0:
+     	   bindex=0;
+     	   findex=size/3;
+     	   break;
+
+     	 case 1:
+     	   bindex=size/3;
+     	   findex=(size/3)*2;
+     	   break;
+
+     	 case 2:
+     	   bindex=(size/3)*2;
+     	   findex=size;
+     	   break;
+     	 }
+
+     	 break;
+      }
+
+    for( int i = 0; i < antennas; ++i )
    {
       slots = CQI_( i ).size();
       for( int j = 0; j < slots; ++j )
       {
-         CQI_( i )( j ).set_size( size );
-         for( int k = 0; k < size; ++k )
+	aux=findex - bindex;
+    	  
+         CQI_( i )( j ).set_size( aux  );
+         for( int k = 0; k < aux; ++k )
          {
             CQI_( i )( j )( k ) = 0.00001;
          }
       }
-      SINR_( i ).set_size( size );
+     
+      SINR_( i ).set_size( aux);
    }
+   
 };
 
 //------------------------------------------------------------------------------

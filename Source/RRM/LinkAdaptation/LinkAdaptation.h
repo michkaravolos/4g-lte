@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _LinkAdaptation_h_
 #define _LinkAdaptation_h_
@@ -61,13 +68,13 @@ class LinkAdaptation
 
       /**
        * Interface.
-       * Detailed description. 
+       * Initializes numberMCSs_, BERt_, codingRate_, betas_ and MCSThresholds_.
        */
       void setParameters();
 
       /**
        * Interface.
-       * Detailed description. 
+       * Left empty. 
        */
       void initialize();
       
@@ -109,7 +116,7 @@ class LinkAdaptation
       
       /**
        * Interface.
-       * Detailed description. 
+       * Where effectively happens the transmission, according to MCS.
        */
       void setBits( const int MCS,
                     int& rawBits,
@@ -151,13 +158,13 @@ class LinkAdaptation
       
       /**
        * Member.
-       * Left empty.
+       * Equals to 3.
        */      
       int numberMCSs_;  
       
       /**
        * Member.
-       * Left empty.
+       * Equals to 1e-6.
        */      
       double BERt_;  
       

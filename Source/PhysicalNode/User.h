@@ -6,13 +6,20 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _User_h_
 #define _User_h_
 
 #include "PhysicalNode.h"
-#include "receiver.h"
+#include "Receiver.h"
 
 using namespace std;
 
@@ -37,7 +44,7 @@ class User : public PhysicalNode
       
       /**
        * Constructor.
-       * Cria o usuário com posição, site, setor e id.
+       * Creates an user with the parameters below.
        */ 
       User( Basic::Position p, int site, int sector, int id );
       
@@ -48,55 +55,66 @@ class User : public PhysicalNode
       virtual ~User();
       
       /**
-       * Inicializa o usuário
+       * Left white.
        * 
        */
       void initialize();
       
       /**
-       * Define os parâmetros
+       * Defines orientation, device_, CQI_, CQIUpdatePeriod_, numberCQIBits_, maxSINRConsidered_, minSINRConsidered_,
+       CQIUpdateCounter_, CQISD_, reuse_, vf, SINR_.
        *
        */
       void setParameters();
       
       /**
-       * Retorna o id da EnodeB
+       * Returns the Id of the ENodeB.
        * 
        */
       int getENodeBId();
       
       /**
-       * Define o Id da EnodeB
+       * Defines the Id da EnodeB.
        *  
        */
       void setENodeBId( int eNodeBId );
+       /**
+       * Returns EnodeB sector.
+       * 
+       */
+      int getENodeBSector();
       
       /**
-       * Evoca getGain
+       * Defines EnodeB sector.
+       *  
+       */
+      void setENodeBSector( int eNodeBSector );
+      
+      /**
+       * Returns Gain of the user.
        * 
        */
       double getGain( double theta );
       
       /**
-       * Define frequencias para o usuário
-       * 
+       * Defines frequencies for the user.
        */
       void setFrequencies( vec frequencies );
       
       /**
-       * Retorna o número de frequencias
+       * Return the number of frequencies allocated to the user.
        * 
        */
       int getNumberFrequencies();
       
       /**
-       * Retorna uma frequencia
+       * Returns the frequency Identified by the index.
        * 
        */
       double getFrequency( int index );
       
       /**
-       * Salva o Channel Quality Indication
+       * Saves the Channel Quality Indication
        * 
        */
       void storeCQI( double sinr,  
@@ -104,78 +122,77 @@ class User : public PhysicalNode
                      int antenna );
       
       /**
-       * Limpa o Channel Quality Indication
+       * Clears the Channel Quality Indication
        * 
        */
       void clearCQI();
       
       /**
-       * Limpa o Signal Interference Noise Ratio
+       * Clears the Signal Interference Noise Ratio
        * 
        */
       void clearSINR();
       
       /**
-       * Salva o Signal Interference Noise Ratio
+       * Saves ths Signal Interference Noise Ratio
        *  
        */
       void storeSINR( double sinr,  
                       double frequency,
-                      int antenna );
+                      int antenna);
       
       /**
-       * Informa o CQI
+       * Reports the CQI
        *  
        */
       double reportCQI( double frequency,
                         int antenna );
       
       /**
-       * Retorna o SINR
+       * Returns the SINR
        * 
        */
       double getSINR( double frequency,
                       int antenna );
       
       /**
-       * Atualiza o CQI
+       * Update the CQI
        * 
        */
       void updateCQI();
       
       /**
-       * Retorna o SINR médio por antena
+       * Returns the average SINR by the passed antenna.
        *  
        */
       double getAverageSINR( int antenna );
       
       /**
-       * Retorna o SINR médio
+       * Returns the average SINR.
        * 
        */
       double getAverageSINR();
       
       /**
-       * Retorna o CQI médio por antena
+       * Returns the Average CQI by the passed antenna.
        * 
        */
       double getAverageCQI( int antenna );
       
       /**
-       * Retorna o CQI médio
+       * Returns the Average CQI.
        * 
        */
       double getAverageCQI();
       
       /**
-       * Ajusta o CQI
+       * Adjust the CQI.
        *  
        */
       void adjustCQI( double& CQI );
       
       /**
-       * Retorna o CQI médio nas frequencias por antena
-       * 
+       * Returns the average CQI from the frequencies by antenna.
        */
       double getAverageCQI( vec frequencies, int antenna );
       
@@ -187,55 +204,59 @@ class User : public PhysicalNode
    protected:
       
       /**
-       * Id da EnodeB
+       * Id of the EnodeB
        * 
        */
       int eNodeBId_;
       
       /**
-       * Matriz de SINR
+       * Matrix of SINR
        * 
        */
       Array< vec > SINR_;
+      /**
+       * Second Matrix of SINR
+       * 
+       */
+      Array< vec > SINR2_;
       
       /**
-       * Matriz de SINR
+       * Matrix of CQI
        * 
        */
       Array< Array< vec > > CQI_;
       
       /**
-       * vetor frequencias
+       * Vector of frequencies.
        * 
        */
       vec frequencies_;
       
       /**
-       *Período de atualização do CQI
-       *
+       * CQI Update Period.
        */
       int CQIUpdatePeriod_;
       
       /**
-       * Contador de atualizações de CQI
+       * CQI Update Counter.
        * 
        */
       int CQIUpdateCounter_;
       
       /**
-       * Numero de Bits do CQI
+       * Number of CQI bits.
        * 
        */
       int numberCQIBits_;
       
       /**
-       * SINR máxima considerada
+       * Maximum SINR Considered.
        * 
        */
       double maxSINRConsidered_;
       
       /**
-       * SINR mínima considerada
+       * Minimum SINR Considered.
        * 
        */
       double minSINRConsidered_;
@@ -245,6 +266,8 @@ class User : public PhysicalNode
        * Detailed description
        */
       double CQISD_;
+      int reuse_;
+      int eNodeBSector_;
           
    private:
    
@@ -281,6 +304,25 @@ User::getNumberFrequencies()
 };
 
 // -----------------------------------------------------------------------------
+
+inline
+void
+PhysicalNode::
+User::setENodeBSector( int eNodeBSector )
+{
+   eNodeBSector_ = eNodeBSector;
+};
+
+//------------------------------------------------------------------------------
+
+inline
+int
+PhysicalNode::
+User::getENodeBSector()
+{
+   return eNodeBSector_;
+};
+
 
 
 

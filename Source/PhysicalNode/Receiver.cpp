@@ -1,19 +1,26 @@
 /**
- * @file    receiver.cpp
+ * @file    Receiver.cpp
  * Name:    3G LTE System Simulator
  * @author  Guilherme Silveira Rabelo
  * Date:    03/21/2008
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 
 // *****************************************************************************
 // Includes
 // *****************************************************************************
 
-#include "receiver.h"
+#include "Receiver.h"
 
 #include "SystemParameters.h"
 #include "SimulationParameters.h"
@@ -28,7 +35,7 @@
 // *****************************************************************************
 
 PhysicalNode::
-receiver::receiver(int orientation)
+Receiver::Receiver(int orientation)
 {
    // 
    orientation_ = orientation;
@@ -39,7 +46,7 @@ receiver::receiver(int orientation)
 // -----------------------------------------------------------------------------
 
 PhysicalNode::
-receiver::~receiver()
+Receiver::~Receiver()
 {
    //delete antenna_;
 };
@@ -50,7 +57,7 @@ receiver::~receiver()
 
 void
 PhysicalNode::
-receiver::setParameters()
+Receiver::setParameters()
 {
    Parameters::SystemParameters* sp = 
       Parameters::SystemParameters::getInstance();
@@ -61,7 +68,7 @@ receiver::setParameters()
 
 void
 PhysicalNode::
-receiver::initialize()
+Receiver::initialize()
 {
    Parameters::SimulationParameters* sp = 
       Parameters::SimulationParameters::getInstance();
@@ -82,7 +89,7 @@ else
 
 double
 PhysicalNode::
-receiver::getGain( double theta )
+Receiver::getGain( double theta )
 {
  Parameters::SimulationParameters* sp = 
       Parameters::SimulationParameters::getInstance();

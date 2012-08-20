@@ -6,6 +6,13 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
  */ 
 
 #ifndef _GenericAntenna_h_
@@ -39,19 +46,19 @@ class GenericAntenna : public Antenna
       virtual ~GenericAntenna();
       
       /**
-       * Define os parâmetros
+       * Defines theta3dB_ and minimumGaindB_.
        * 
        */
       void setParameters();
       
       /**
-       * Evoca getGain
+       * Returns Gain of the generic Antenna.
        *
        */
       double getGain( double theta );
       
       /**
-       * Evoca getGain_dB
+       * Returns Gain of the generic Antenna in dB.
        * 
        */
       double getGain_dB( double theta );
@@ -60,13 +67,13 @@ class GenericAntenna : public Antenna
    protected:
       
       /**
-       * Angulo de 3dB
+       * 3dB Angle.
        * 
        */
       double theta3dB_;
       
       /**
-       * Mínimo ganho da antena
+       * Minimum gain of the antenna in dB.
        * 
        */
       double minimumGaindB_;

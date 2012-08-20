@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _Results_h_
 #define _Results_h_
@@ -43,7 +50,7 @@ class Results
       static Results* getInstance();
 
       /**
-       * Define os parâmetros
+       * Defines numberSimulations_, numberDrops_, MCSHistogramPerDrop_, MCSPercentage_, CQIReportDelay_, dropResultsFile_, simulationResultsFile_, initialUsers_, finalUsers_, userStep_.
        * 
        */
       void setParameters();
@@ -55,50 +62,42 @@ class Results
       void clear();
       
       /**
-       * Inicializa os vetores de SINR
-       * 
+       * Initializes the vectors of SINR.
        */
       void initialize();
       
       /**
-       * Inicializa variáveis dos DROPS
-       * 
+       * Initializes variables of DROPS
        */
       void initializeDrop();
       
        /**
-       * Inicializa as variáveis da Simulacao
-       * 
+       * Initializes the variables of Simulation.
        */
       void initializeSimulation();
       
       /**
-       * Adiciona Id geral para os usuarios
-       * 
+       * Add ID for each user.
        */
       void addUserId( int userId );
       
       /**
-       * Retorna o numero de usuarios
-       *  
+       * Returns the number of users.
        */
       int getNumberUsers();
       
       /**
-       * Retorna o id do usuario
-       * 
+       * Returns the id of the user.
        */
       int getUserId( int index );
       
       /**
-       * Finaliza os Drops
-       * 
+       * Finishes Drops.
        */
       void finalizeDrop();
       
       /**
-       * Finaliza a Simulacao
-       * 
+       * Finishes the simulation.
        */
       void finalizeSimulation();
       
@@ -127,14 +126,12 @@ class Results
       double getAverageSINR_dB();
       
       /**
-       * Salva o MCS usado para cada transmissao
-       * 
+       * Saves MCS used by each transmission.
        */
       void storeMCS( int MCS );
       
       /**
-       * Retorna o MCS utilizado para uma transmissao qualquer definida.
-       * 
+       * Returns the MCS for a defined transmission.
        */
       int getMCSHistogram( int MCS );
       
@@ -145,74 +142,65 @@ class Results
       double getMCSPercentage( int MCS );
       
     /**
-       * Mostra os resultados
-       * 
+       * Displays Results.
        */
       void displayResults();
       
       /**
-       * Salva os resultados dos DROPS no arquivo DropSimulationResults.dat
-       * 
+       * Saves the results of DROPs in DropSimulationResults.dat
        */
       void saveDropResults();
       
       /**
-       * Salva os dados da Simulacao no arquivo SimulationResults.dat
-       * 
+       * Saves the data of the simulation in SimulationResults.dat
        */
       void saveSimulationResults();
       
       /**
-       * Incrementa a variável de sucessos por DROP
-       * 
+       * Increases the success per DROP variable.
        */
       void storeSuccess();
       
       /**
-       * Incrementa a variável de falhas por DROP
-       * 
+       * Increases the failure per DROP variable.
        */
       void storeFailure();
       
       /**
-       * Retorna porcentagem de sucessos
-       * 
+       * Returns percentage of success.
        */
       double getPercentageSuccess();
       
       /**
-       * Retorna porcentagens de falhas
+       * Returns percentage of failure.
        * 
        */
       double getPercentageFailure();
       
       /**
-       * Salva o Histograma da SINR
+       * Saves the histogram of SINR.
        * 
        */
       void storeSINR( const double sinr );
       
       /**
-       * Salva o histograma de distancia
-       * 
+       * Saves the histogram of distance.
        */
       void storeDistance( const double distance );
       
       /**
-       * Salva a SINR com relacao a frequencia
-       * 
+       * Saves the SINR related with relation to frequency.
        */
       void storeSINR( const double sinr,
                       const double frequency );
       
      /**
-       * Salva as funcoes de probabilidade com relacao a SINR
-       * 
+       * Saves the probability functions with relation to SINR.
        */
       void saveSINRCDF();
       
       /**
-       * Realiza calculos de media, variancia e desvio das funcoes de probabilidade em relacao a SINR
+       * Performs calculations of average, variance and standard deviation of probability functions in relation to SINR
        * 
        */
       void saveDistanceCDF();

@@ -6,7 +6,14 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
- */ 
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
+ */
 
 #ifndef _SimulationParameters_h_
 #define _SimulationParameters_h_
@@ -114,6 +121,19 @@ class SimulationParameters : public Parameters
        * Left empty.
        */   
       double SoundingInterval;
+      
+       /**
+       * Member.
+       * Left empty.
+       */   
+      double SoundingLimit;
+      
+       /**
+       * Member.
+       * Left empty.
+       */   
+      double InterLimit;
+      
       
     
       

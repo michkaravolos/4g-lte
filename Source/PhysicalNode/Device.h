@@ -6,6 +6,13 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
  */ 
 
 #ifndef _Device_h_
@@ -29,7 +36,7 @@ class Device
 
       /**
        * Constructor.
-       * Detailed description.
+       * Calls setParameters and initialize.
        */   
       Device();
       
@@ -40,20 +47,19 @@ class Device
       virtual ~Device();
       
       /**
-       * Define os parâmetros do dispositivo
+       * Left white.
        * 
        */
       virtual void setParameters();
       
       /**
-       * Inicializa o dispositivo
+       * Left white.
        * 
        */
       virtual void initialize();
       
       /**
-       * Evoca a interface de antenna
-       * 
+       * Detailed description.
        */
       virtual double getGain( double theta )= 0;
       
@@ -66,8 +72,8 @@ class Device
        */
       Antenna* antenna_;
       /**
-       * Orientação
-       * Trouxe de Transmitter para que receiver também tenha orientation. Mas só faz sentido na eNodeB.
+       * Orientation.
+       * It came from Transmitter so that Receiver has an orienation too.
        */
       int orientation_;
 

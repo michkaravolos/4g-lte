@@ -6,6 +6,13 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
  */
 
 // *****************************************************************************
@@ -33,10 +40,6 @@ Results::Results*
 // *****************************************************************************
 // Constructors
 // *****************************************************************************
-/**
-       * Inicia os parametros
-       * 
-       */
 Results::
 Results::Results()
 {
@@ -45,10 +48,6 @@ Results::Results()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Destructor
-       * 
-       */
 Results::
 Results::~Results()
 {
@@ -57,10 +56,6 @@ Results::~Results()
 // *****************************************************************************
 // Interfaces
 // *****************************************************************************
-/**
-       * Chama o constructor
-       * 
-       */
 Results::Results* 
 Results::
 Results::getInstance()
@@ -73,10 +68,6 @@ Results::getInstance()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Inicializa os parametros
-       * 
-       */
 void
 Results::
 Results::setParameters()
@@ -107,10 +98,6 @@ Results::setParameters()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Inicializa os vetores de SINR
-       * 
-       */
 void
 Results::
 Results::initialize()
@@ -140,10 +127,6 @@ Results::initialize()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Inicializa variáveis dos DROPS
-       * 
-       */
 void
 Results::
 Results::initializeDrop()
@@ -171,10 +154,6 @@ Results::initializeDrop()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Inicializa as variáveis da Simulacao
-       * 
-       */
 void
 Results::
 Results::initializeSimulation()
@@ -205,10 +184,6 @@ Results::clear()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Finaliza os Drops
-       * 
-       */
 void
 Results::
 Results::finalizeDrop()
@@ -266,10 +241,6 @@ Results::finalizeDrop()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Salva os resultados dos DROPS no arquivo DropSimulationResults.dat
-       * 
-       */
 void
 Results::
 Results::saveDropResults()
@@ -308,10 +279,6 @@ Results::saveDropResults()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Salva os dados da Simulacao no arquivo SimulationResults.dat
-       * 
-       */
 void
 Results::
 Results::saveSimulationResults()
@@ -370,10 +337,6 @@ Results::saveSimulationResults()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Finaliza a Simulacao
-       * 
-       */
 void
 Results::
 Results::finalizeSimulation()
@@ -388,10 +351,6 @@ Results::finalizeSimulation()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Salva o MCS usado para cada transmissao
-       * 
-       */
 void
 Results::
 Results::storeMCS( int MCS )
@@ -415,10 +374,6 @@ Results::storeMCS( int MCS )
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Retorna o MCS utilizado para uma transmissao qualquer definida.
-       * 
-       */
 int
 Results::
 Results::getMCSHistogram( int MCS )
@@ -445,10 +400,6 @@ Results::getMCSHistogram( int MCS )
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Mostra os resultados
-       * 
-       */
 void
 Results::
 Results::displayResults()
@@ -463,10 +414,6 @@ Results::displayResults()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Salva as funcoes de probabilidade com relacao a SINR
-       * 
-       */
 void
 Results::
 Results::saveSINRCDF()
@@ -527,10 +474,6 @@ Results::saveSINRCDF()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Realiza calculos de media, variancia e desvio das funcoes de probabilidade em relacao a SINR
-       * 
-       */
 void
 Results::
 Results::saveDistanceCDF()
@@ -589,10 +532,6 @@ Results::saveDistanceCDF()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Incrementa a variável de sucessos por DROP
-       * 
-       */
 void
 Results::
 Results::storeSuccess()
@@ -607,10 +546,6 @@ Results::storeSuccess()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Incrementa a variável de falhas por DROP
-       * 
-       */
 void
 Results::
 Results::storeFailure()
@@ -625,10 +560,6 @@ Results::storeFailure()
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Salva a SINR com relacao a frequencia
-       * 
-       */
 void
 Results::
 Results::storeSINR( const double sinr, const double frequency )
@@ -652,10 +583,6 @@ Results::storeSINR( const double sinr, const double frequency )
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Salva o Histograma da SINR
-       * 
-       */
 void
 Results::
 Results::storeSINR( const double sinr )
@@ -681,10 +608,6 @@ Results::storeSINR( const double sinr )
 }
 
 //------------------------------------------------------------------------------
-/**
-       * Salva o histograma de distancia
-       * 
-       */
 void
 Results::
 Results::storeDistance( const double distance )

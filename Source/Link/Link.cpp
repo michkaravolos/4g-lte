@@ -6,7 +6,15 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
  */
+
 
 // *****************************************************************************
 // Includes
@@ -39,6 +47,8 @@ double time1[1]={0};
       int timesounding[2]={0.0};
      
       int control2=0;
+      int flag=0;
+      int control3,control4;
       
       
 // *****************************************************************************
@@ -95,6 +105,7 @@ Link::setParameters()
    bandwidth_ = sysp->subcarrierBandwidth;
    temperature_ = sp->temperature;
    numberAntennas_ = sysp->numberTransmitAntennas;
+   reuse_=sysp->reuse;
 }
 
 //------------------------------------------------------------------------------
@@ -115,6 +126,10 @@ Link::initialize()
    radioChannel_ = RadioChannel::RadioChannel::getInstance();
    simulationEnvironment_ = SimulationEnvironment::
       SimulationEnvironment::getInstance();
+      control3=0;
+      control4=0;
+      InterLimit_=sp->InterLimit;
+      SoundingLimit_=sp->SoundingLimit;
 }
 
 //------------------------------------------------------------------------------
@@ -147,42 +162,43 @@ Link::createLinks()
    double max = -1e300;
    int id = 0;
    
-   for( int i = 0; i < numberUsers_; ++i )//Numero total de usuarios
+   for( int i = 0; i < numberUsers_; ++i )               //Total number of users
    {
-      max = -1e300; //Define um numero maximo
-      user = simulationEnvironment_->getUser( i );//Pega um usuario de SimulationEnvironment->GetUser
+      max = -1e300;                                      //Defines a maximum number.
+      user = simulationEnvironment_->getUser( i );       //Catchs an user with SimulationEnvironment->GetUser.
       
-      p2 = user->getPosition();//Gera uma posição dentro do GRID para esse usuario
+      p2 = user->getPosition();                          //Creates an position inside the GRID to this user.
       
-      for( int j = 0; j < numberENodeBs_; ++j )//Numero total de ENodeBs
+      for( int j = 0; j < numberENodeBs_; ++j )          //Total number of ENodeBs
       {   
-         eNodeB = simulationEnvironment_->getENodeB( j );  //Gera uma ENodeB de SimulationEnvironment-GetENodeB
+         eNodeB = simulationEnvironment_->getENodeB( j );//Creates an ENodeB from SimulationEnvironment->GetENodeB.
          
-         p1 = eNodeB->getPosition();//Gera uma poição para essa ENodeB dentro do GRID
-         arg = mf.calculateAngle( p1, p2 );//Calcula o angulo entre essa ENodeB e do usuário
-         gainTX = eNodeB->getGain( arg );//Analisa o Ganho para esse angulo de TX
-         gainRX = user->getGain( pi + arg );//Analisa o Ganho para esse angulo de RX
+         p1 = eNodeB->getPosition();                     //Creates an position to this ENodeB inside the GRID.
+         arg = mf.calculateAngle( p1, p2 );              //Calculates the angle between ENodeB and the user.
+         gainTX = eNodeB->getGain( arg );                //Analyse the gain to the TX angle.
+         gainRX = user->getGain( pi + arg );             //Analyse the gain to the RX angle.
          
          fading = gainTX * gainRX * 
-            radioChannel_->getLargeScaleFading( user, eNodeB );//Gera um LargeScaleFading para esse par User-ENodeB
+            radioChannel_->getLargeScaleFading( user, eNodeB );//Creates LargeScaleFading to this User-ENodeB pair.
          
          if( fading > max )
          {
-            max = fading;//Se o fading for maior que o numero maximo esse maximo agora é esse fading
-            id = eNodeB->getId();//Pega-se o ID dessa ENodeB de fading maximo
+            max = fading;                                 //If fading is greater than the maximum number, now the fading is the max.
+            id = eNodeB->getId();                         //It takes the ID of the maximum fading.
          }        
       }
-      losses_( i ) = max;//Guarda esse max nesse vetor perdas
-      id = 3 * user->getSite() + user->getSector();//?
+      losses_( i ) = max;                                 //Keep the max on the losses_ vector.
+      id = 3 * user->getSite() + user->getSector();
       eNodeB = simulationEnvironment_->getENodeB( id ); 
       user->setENodeBId( id );
+       user->setENodeBSector(eNodeB->getSector());
       
       if( id >= 0 && id < 3 )
       {
-         r->addUserId( i );//Se o id ficar entre zero e tres ele adiciona o index i como ID do user criado
+         r->addUserId( i );                               //If the ID become between 0 and 3, it adds the index i with the ID of the created user.
       }
       
-      eNodeB->addUser( user->getId() );//Adiciona o Usuario naquela ENodeB
+      eNodeB->addUser( user->getId() );                   //Adds the user on the defined eNodeB.
       
    }
 }
@@ -207,7 +223,7 @@ Link::calculateSINR1(int index, ivec& schedulerUsers_, vec frequencies, bool cal
        Parameters::SimulationParameters* sp = 
       Parameters::SimulationParameters::getInstance();
       timesounding[1]=toc();
-      if((timesounding[1]-timesounding[0])>= sp->SoundingInterval)
+      if((timesounding[1]-timesounding[0])>= sp->SoundingInterval && tm->getCurrentStep()!=0)
       {
 	calculateSINRSounding(schedulerUsers_); 
 	timesounding[0]=timesounding[1];
@@ -308,7 +324,9 @@ if(calc==true){
 	      }
 	     for( int k2 = 0; k2 < numberAntennas_; ++k2 ){
 		   sinr = calculateSINRPerUser1( UserID[i], ENodeBID[i], freq[i], k2, temp);
-		    user->storeSINR( sinr, freq[i], k2 );
+		   if(control3<=InterLimit_){
+		    user->storeSINR( sinr, freq[i], k2);
+		   control3++;}
 		                                                } 
 	}
 	index1=0;
@@ -327,22 +345,54 @@ Link::calculateSINRs()
    int nfreq = 0;
    double freq = 0.0;
    int eid = -1;
-   
+   int findex;
+   int bindex;
    for( int i = 0; i < numberUsers_; ++i )
    {
       user = simulationEnvironment_->getUser( i );  
       nfreq = user->getNumberFrequencies();
       eid = user->getENodeBId();
-      eNodeB = simulationEnvironment_->getENodeB( eid );       
-      for( int j = 0; j < nfreq; ++j )
+      eNodeB = simulationEnvironment_->getENodeB( eid );  
+           switch(reuse_)
+         {
+         case 0:
+        	 bindex=0;
+        	 findex=nfreq;
+        	 break;
+
+         case 1:
+        	 switch(eNodeB->getSector())
+        	 {
+        	 case 0:
+        	   bindex=0;
+        	   findex=nfreq/3;
+        	   break;
+
+        	 case 1:
+        	   bindex=nfreq/3;
+        	   findex=(nfreq/3)*2;
+        	   break;
+
+        	 case 2:
+        	   bindex=(nfreq/3)*2;
+        	   findex=nfreq;
+        	   break;
+        	 }
+
+        	 break;
+	 }
+       for( int j = bindex; j < findex; ++j )
       {
-         freq = user->getFrequency( j );        
+
+       freq = user->getFrequency( j );
+
          for( int k = 0; k < numberAntennas_; ++k )
          {
-            sinr = calculateSINRPerUser( i, eid, freq, k );
-            user->storeSINR( sinr, freq, k );
-            r->storeSINR( sinr, freq );    
-	    //r->storeSINR(sinr);
+        	 sinr = calculateSINRPerUser( i, eid, freq, k);
+        	   user->storeSINR( sinr, freq, k);
+                   r->storeSINR( sinr, freq );
+        	   //r->storeSINR( sinr );
+            
          }
       }
    }
@@ -364,21 +414,57 @@ Link::calculateSINRSounding(ivec& schedulerUsers_)
    double freq = 0.0;
    int eid = -1;
    int usersSize = schedulerUsers_.size();
+   int findex;
+   int bindex;
    for(int i=0;i<usersSize/NumberUserSounding;i++){
    
    if(i+control2>=usersSize-1){control2=0;return;}
       user = simulationEnvironment_->getUser( i+control2 );  
       nfreq = user->getNumberFrequencies();
       eid = user->getENodeBId();
-      eNodeB = simulationEnvironment_->getENodeB( eid );       
-      for( int j = 0; j < nfreq; ++j )
+      eNodeB = simulationEnvironment_->getENodeB( eid ); 
+        switch(reuse_)
+         {
+         case 0:
+        	 bindex=0;
+        	 findex=nfreq;
+        	 break;
+
+         case 1:
+        	 switch(eNodeB->getSector())
+        	 {
+        	 case 0:
+        	   bindex=0;
+        	   findex=nfreq/3;
+        	   break;
+
+        	 case 1:
+        	   bindex=nfreq/3;
+        	   findex=(nfreq/3)*2;
+        	   break;
+
+        	 case 2:
+        	   bindex=(nfreq/3)*2;
+        	   findex=nfreq;
+        	   break;
+        	 }
+
+        	 break;
+	 }
+      for( int j = bindex; j < findex; ++j )
       {
-         freq = user->getFrequency( j );        
+
+       freq = user->getFrequency( j );
+
          for( int k = 0; k < numberAntennas_; ++k )
          {
-            sinr = calculateSINRPerUser( i, eid, freq, k );
-            user->storeSINR( sinr, freq, k );
-            //r->storeSINR( sinr, freq );    
+        	 sinr = calculateSINRPerUser( i, eid, freq, k);
+		 if(control4<=SoundingLimit_){
+        	   user->storeSINR( sinr, freq, k); control4++;
+		   
+		}
+                   //r->storeSINR( sinr );
+            
          }
       }
   
@@ -404,17 +490,17 @@ Link::calculateSINRPerUser1( int userId, int eNodeBId, double frequency,
    double fading = 0.0;
    double interFading = 0.0;
    double inter = 0.0;
-   double noise = boltzmannConstant_ * noiseFigure_ * bandwidth_ * temperature_; //Gera um ruído Gaussiano
-   I_Uniform_RNG gen( 0, numberAntennas_ - 1 );//Pega uma antena aleatoriamente
+   double noise = boltzmannConstant_ * noiseFigure_ * bandwidth_ * temperature_; //Creates a Gaussian User.
+   I_Uniform_RNG gen( 0, numberAntennas_ - 1 );                                  //Takes an aleatory antenna.
    
-   eNodeB = simulationEnvironment_->getENodeB( eNodeBId );//Retoma o ENodeB de CalculateSINRs
+   eNodeB = simulationEnvironment_->getENodeB( eNodeBId );                       //Returns the ENodeB from CalculateSINRs
    
-   user = simulationEnvironment_->getUser( userId );//Retoma o User de CalculateSINRs
+   user = simulationEnvironment_->getUser( userId );                             //Returns the User from CalculateSINRs
    
-   time = tm->getCurrentTime();//?
+   time = tm->getCurrentTime();
    time1[0]=time;
-   fading = getTotalFading( eNodeBId, userId, time, frequency, antenna );//Pega o fading total Small+Large
-   prx = eNodeB->getTransmittedPower( frequency ) * fading;//Pega a potencia de recepçao já multiplicada pelo fading
+   fading = getTotalFading( eNodeBId, userId, time, frequency, antenna );
+   prx = eNodeB->getTransmittedPower( frequency ) * fading;
    if ( prx == 0.0 )
    {
       it_error("Recieved power = 0");
@@ -424,7 +510,7 @@ Link::calculateSINRPerUser1( int userId, int eNodeBId, double frequency,
    {
       it_error("Recieved power < 0");
    }
-   sinr = prx / ( InterSINR + noise ); //SINR é o resultado da potencia recebida dividida pela soma do interfading mais o ruido gaussiano
+   sinr = prx / ( InterSINR + noise ); 
    return sinr;
 }
 
@@ -504,9 +590,9 @@ PhysicalNode::User* user;
    double inter = 0.0;
    eNodeB = simulationEnvironment_->getENodeB( eNodeBId );
    //cout<<"Chegou aqui \n"<<userId<<" "<<eNodeBId<<" "<<frequency<<" "<<antenna<<"\n";
-    interFading = getTotalFading( eNodeBId, userId, time1[0], frequency, antenna);//Pega o fading entre o user2 e a ENodeB do user
+    interFading = getTotalFading( eNodeBId, userId, time1[0], frequency, antenna);
     //cout<<"Chegou aqui2 \n"<<interFading<<"\n";  
-    intersinr = eNodeB->getTransmittedPower( frequency ) * interFading;//Calcula o intersinr multiplicando Potencia de TX do user2 vezes o interfading
+    intersinr = eNodeB->getTransmittedPower( frequency ) * interFading;
       //cout<<intersinr<<"\n";
 
    if ( intersinr < 0.0 )

@@ -6,6 +6,13 @@
  *
  * This file is part of the undergraduate final project, under the supervision 
  * of Robson Domingos and Paulo Portela.
+ * 
+ * @author_2  Luiz Gustavo da Silva Carvalho
+ * @author_3  Marcos Samuel Santos Ouriques  
+ * Date:      09/01/2012 (Month/Day/Year)
+ * 
+ * This file is also a part of the undergraduate final project, under the supervision 
+ * of Andre Noll Barreto.
  */ 
 
 #ifndef _ENodeB_h_
@@ -15,6 +22,7 @@
 #include "PhysicalLayer.h"
 #include "SchedulingAlgorithm.h"
 #include "Transmitter.h"
+#include "SystemParameters.h"
 
 using namespace std;
 
@@ -33,13 +41,12 @@ class ENodeB : public PhysicalNode
 
       /**
        * Constructor.
-       * Cria EnodeB genérica
+       * Creates a generic ENodeB.
        */   
       ENodeB();
       
       /**
-       * Define a posição e o ID da EnodeB
-       * 
+       * Defines the position and the ID of ENodeB.
        */   
       ENodeB( Basic::Position p, int id);
       
@@ -50,130 +57,134 @@ class ENodeB : public PhysicalNode
       virtual ~ENodeB();
       
       /**
-       * Define os parâmetros
+       * Defines reuse_.
        * 
        */
       void setParameters();
       
       /**
-       * Inicializa a EnodeB
-       * 
+       * Initializes the ENodeB.
+       * Defining reuse_, device_ (Direction_ ==0, device_ = Transmitter, else, Receiver).
+       * Defining site_, sector_, rawBits_, effectiveBits_.
        */
       void initialize();
       
       /**
-       * Evoca o ganho em antenna
+       * Returns antenna gain.
        * 
        */
       double getGain( const double theta );
             
       /**
-       * Evoca setPhysicalLayer em PhysicalLayer
+       * Calls setPhysicalLayer from PhysicalLayer.
        * 
        */
       void setPhysicalLayer( PhysicalLayer::PhysicalLayer* pl );
       
       /**
-       * Evoca addUser de User
+       * Calls addUser from User.
        * 
        */
       void addUser( int userId );
       
       /**
-       * Evoca getNumberLinks
+       * Return number of links.
        * 
        */
       int getNumberLinks();
       
       /**
-       * Evoca os usuários alocados
+       * Schedule Users.
        * 
        */
       void scheduleUsers(int Direction);
       
       /**
-       * Evoca setSchedulingAlgorithm
+       * Set Schedulling Algorithm.
        * 
        */
       void setSchedulingAlgorithm( Scheduler::SchedulingAlgorithm* sa );
       
       /**
-       * Transmite os bits de EnodeB para User
+       * The trasmition consists in defining rawBits_ and effectiveBits_.
        * 
        */
       void transmit();
       
       /**
-       * Retorna o número de Physical Resource Blocks
+       * Returns the number of Physical Resource Blocks.
        * 
        */
       int getNumberPRBs();
       
       /**
-       * Retorna o número de Slots
+       * Returns the number of Slots.
        * 
        */
       int getNumberSlots();
       
       /**
-       * Retorna o Id do usuário alocado
-       * 
+       * Returns the ID of the scheduled user defined by the parameters.
        */
       int getScheduledUserId( int slot , int prb );
       
       /**
-       * Retorna a potencia transmitidas
+       * Returns the Transmited power.
        * 
        */
       double getTransmittedPower( double Frequency );
       
       /**
-       * Retorna uma frequencia
+       * Returns a frequency.
        * 
        */
       double getFrequency( int slot , int prb );
       
       /**
-       * Informa as frequencias do usuário
+       * Return the User frequencies.
        * 
        */
       void informUserFrequencies();
       
       /**
-       * Retorna a camada física do usuário
        * 
        */
       PhysicalLayer::PhysicalLayer* getPhysicalLayer();
       
       /**
-       * Retorna o número de usuários da EnodeB
+       * Returns the number of users on the ENodeB.
        * 
        */
       int getNumberLinkedUsers();
       
       /**
-       * Retorna o id do usuário conectado
+       * Returns the ID of the linked user.
        * 
        */
       int getLinkedUserId( int index );
       //ivec linkedUsers_;
+      /**
+       * Inteiro para capturar o reuso
+       * 
+       */
+      int reuse_;
         
    protected:
       
       /**
-       * Ponteiro para physicalLayer
+       * Pointer to physicalLayer
        * 
        */
       PhysicalLayer::PhysicalLayer* physicalLayer_;
       
       /**
-       * Usuários alocados
+       * Vector with linked users.
        * 
        */
       ivec linkedUsers_;
       
       /**
-       * Ponteiro para schedulingAlgorithm
+       * Pointer to schedulingAlgorithm
        * 
        */
       Scheduler::SchedulingAlgorithm* schedulingAlgorithm_;
