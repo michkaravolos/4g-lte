@@ -1,0 +1,9 @@
+shadowingMean = 0
+shadowingSD = 8; # dB pow( 10, 8 / 10 )
+userSpeed = 1.2 # 3 / 3.6; # ms/s;
+readFile = true # not used
+ChannelFileName = "SmallScaleFading.it" # not used
+profile = COST259_TUx # not used
+channelTime = 2000
+timeStep = 0.09
+frequencyStep = 9765.625
