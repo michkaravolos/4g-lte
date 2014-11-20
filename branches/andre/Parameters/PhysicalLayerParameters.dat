@@ -1,0 +1,6 @@
+numberREPerSC = 7
+numberSCPerPRB = 12
+slotTimeLength = 0.0005 # 5e-4
+numberSlotsPerRSubframe = 2
+numberSubframesPerFrame = 10
+SoundingSlots = 1
